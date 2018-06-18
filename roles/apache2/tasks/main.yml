@@ -31,4 +31,7 @@
 - name: enable proxy-host site
   command: a2ensite proxy-host
   notify:
-    - restart tomcat8
+    - restart apache2
+
+- name: restart apache2
+  service: name=apache2 state=restarted
