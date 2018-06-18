@@ -1,5 +1,7 @@
 ---
 - name: install and configure backend server
+  hosts: localhost
+  connection: local
   sudo: yes
   roles:
    - tomcat8
