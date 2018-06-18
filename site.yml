@@ -1,0 +1,8 @@
+---
+- name: install and configure backend server
+  hosts: backend
+  remote_user: ubuntu
+  sudo: yes
+  roles:
+   - tomcat8
+   - apache2
