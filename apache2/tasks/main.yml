@@ -3,3 +3,32 @@
   apt:
     name: apache2
     state: present 
+
+- name: install build-essential package
+  apt:
+    name: build-essential
+    state: present
+
+- name: enable proxy module
+  command: a2enmod {{ item }}
+  with_items:
+    - proxy
+    - proxy_http
+    - proxy_ajp
+    - rewrite
+    - deflate
+    - headers
+    - proxy_balancer
+    - proxy_connect
+    - proxy_html
+ 
+- name: disable 000-default site
+  command: a2dissite 000-default
+
+- name: create proxy-host.conf
+  copy: src=proxy-host.conf dest=/etc/apache2/sites-available/proxy-host.conf owner=root group=root mode=0644
+
+- name: enable proxy-host site
+  command: a2ensite proxy-host
+  notify:
+    - restart tomcat8
