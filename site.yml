@@ -2,7 +2,7 @@
 - name: install and configure backend server
   hosts: localhost
   connection: local
-  sudo: yes
+  become: yes
   roles:
    - tomcat8
    - apache2
