@@ -4,5 +4,6 @@
   connection: local
   become: yes
   roles:
-   - tomcat8
-   - apache2
+    - role: tomcat8
+      env: "{{ env }}"
+    - apache2

@@ -3,3 +3,10 @@
   apt:
     name: tomcat8
     state: present
+
+- name: add spring profile entry in tomcat startup file
+  replace:
+    path: /etc/default/tomcat8
+    regexp: '^JAVA_OPTS="-Djava.awt.headless=true'
+    replace: 'JAVA_OPTS="-Dspring.profiles.active={{ env }} -Djava.awt.headless=true'
+    backup: yes
