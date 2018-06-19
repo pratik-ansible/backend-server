@@ -28,9 +28,6 @@
 - name: create proxy-host.conf
   copy: src=proxy-host.conf dest=/etc/apache2/sites-available/proxy-host.conf owner=root group=root mode=0644
 
-- name: restart apache2
-  service: name=apache2 state=restarted
-
 - name: enable proxy-host site
   command: a2ensite proxy-host
   notify:
